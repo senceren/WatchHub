@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Entities
 {
-    internal class Category
+    public class Category : BaseEntity
     {
+        public string Name { get; set; } = null!;
     }
 }
