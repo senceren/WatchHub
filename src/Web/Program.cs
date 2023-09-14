@@ -1,22 +1,21 @@
-using ApplicationCore.Interfaces;
-using Infrastructure.Data;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Web.Data;
+global using Infrastructure.Identity;
+global using ApplicationCore.Interfaces;
+global using Infrastructure.Data;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<WatchHubContext>(ob => ob.UseNpgsql(builder.Configuration.GetConnectionString("WatchHubContext")));
-
 // Add services to the container.
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<WatchHubContext>(ob => ob.UseNpgsql(builder.Configuration.GetConnectionString("WatchHubContext")));
+builder.Services.AddDbContext<AppIdentityContext>(ob => ob.UseNpgsql(builder.Configuration.GetConnectionString("AppIdentityContext")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppIdentityContext>();
 builder.Services.AddControllersWithViews();
 
 // IRepository gördüðün yerde EFRepository enjekte et.
@@ -52,6 +51,10 @@ using (var scope = app.Services.CreateScope())
 {
     var watchHubContext = scope.ServiceProvider.GetRequiredService<WatchHubContext>();
       await WatchHubContextSeed.SeedAsync(watchHubContext);
+
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    await AppIdentityContextSeed.SeedAsync(roleManager, userManager);
 }
 
 app.Run();

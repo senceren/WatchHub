@@ -28,4 +28,7 @@ Before running the following commands, make sure that Web is set as startup proj
 ```
 Add-Migration InitialCreate -Context WatchHubContext -o Data/Migrations
 Update-Database -Context WatchHubContext
+
+Add-Migration InitialIdentity -Context AppIdentityContext -o Identity/Migrations
+Update-Database -Context AppIdentityContext
 ```
