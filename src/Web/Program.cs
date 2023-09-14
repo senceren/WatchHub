@@ -3,7 +3,9 @@ global using ApplicationCore.Interfaces;
 global using Infrastructure.Data;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
-
+global using Web.Models;
+using Web.Interfaces;
+using Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +20,10 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<AppIdentityContext>();
 builder.Services.AddControllersWithViews();
 
-// IRepository gördüðün yerde EFRepository enjekte et.
-builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>)); 
+// IRepository gördüðün yerde EFRepository enjekte et.Generic olduðu için bu þekilde enjeckte ettik.
+builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+
+builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
 
 var app = builder.Build();
 

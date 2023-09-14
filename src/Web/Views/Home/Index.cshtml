@@ -1,25 +1,24 @@
-﻿
-
-@inject ApplicationCore.Interfaces.IRepository<ApplicationCore.Entities.Product> productRepo
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model HomeViewModel
 
+<h1 class="display-4">All Watches</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+@foreach (var item in Model.Products)
+{
+    <div class="col-md-3 m-2">
+        <div class="card" style="width: 18rem;">
+            <img src="~/img/product/@item.PictureUri" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">@item.Name</h5>
+                <p class="card-text">@item.Price ₺</p>
+                <a href="#" class="btn btn-primary">Add To Cart</a>
+            </div>
+        </div>
+    </div>
+}
 </div>
 
-<table>
-    @foreach (var item in await productRepo.GetAllAsync())
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td>
-                <img src="~/img/product/@item.PictureUri" width="50" />
-            </td>
-        </tr>
 
-    }
-</table>
