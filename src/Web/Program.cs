@@ -20,7 +20,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<AppIdentityContext>();
 builder.Services.AddControllersWithViews();
 
-// IRepository gördüðün yerde EFRepository enjekte et.Generic olduðu için bu þekilde enjeckte ettik.
+// IRepository gördüðün yerde EFRepository enjekte et.Generic olduðu için bu þekilde enjekte ettik.
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
@@ -41,6 +41,9 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+// Ýsteklerin kültürüne amerikan ingilizcesi ekledik.
+app.UseRequestLocalization("en-US");
 
 app.UseRouting();
 

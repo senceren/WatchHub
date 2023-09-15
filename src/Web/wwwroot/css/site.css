@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+   
 }
 
 @media (min-width: 768px) {
@@ -18,5 +19,34 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: 'Oswald', sans-serif;
 }
+.container-fluid {
+    background-color: #2B2B2B;
+    font-family: 'Roboto', sans-serif;
+}
+.card {
+    box-shadow: gray 8px 8px 20px;
+}
+.card-title{
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    overflow:hidden;
+    font-size:x-large;
+}
+.card-text{
+    font-size:1.2rem;
+}
+.card-img-top {
+    margin: 0.5rem;
+    transform: scale(.8);
+    transition: ease-in-out;
+    transition: .5s;
+}
+.card-img-top:hover{
+  transform:scale(.95)
+}
+
+
+
