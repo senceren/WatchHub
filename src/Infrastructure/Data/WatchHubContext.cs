@@ -20,6 +20,8 @@ namespace Infrastructure.Data
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Brand> Brands => Set<Brand>();
+        public DbSet<Basket> Baskets => Set<Basket>();
+        public DbSet<BasketItem> BasketItems => Set<BasketItem>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
