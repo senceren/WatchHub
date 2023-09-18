@@ -6,6 +6,7 @@ global using Microsoft.EntityFrameworkCore;
 global using Web.Models;
 using Web.Interfaces;
 using Web.Services;
+using ApplicationCore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 
 builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
+
+builder.Services.AddScoped<IBasketService, BasketService>();
 
 var app = builder.Build();
 
