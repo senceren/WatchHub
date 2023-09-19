@@ -4,9 +4,11 @@ global using Infrastructure.Data;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.EntityFrameworkCore;
 global using Web.Models;
-using Web.Interfaces;
+global using Web.Interfaces;
+global using Web.Extensions;
 using Web.Services;
 using ApplicationCore.Services;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +29,10 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
 builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
 
 builder.Services.AddScoped<IBasketService, BasketService>();
+
+builder.Services.AddScoped<IBasketViewModelService, BasketViewModelService>();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
