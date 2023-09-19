@@ -42,7 +42,7 @@
                     <h5 class="card-title" title="@item.Name">@item.Name</h5>
                     <p class="card-text">@item.Price ₺</p>
                 </div>
-                <a href="#" class="btn" style="background: linear-gradient(to right, #CDFFD8, #94B9FF) !important; font-family: 'Roboto', sans-serif;"><i class="fa-solid fa-cart-plus"></i></a>
+                <a href="#" class="btn" data-add="@item.Id" style="background: linear-gradient(to right, #CDFFD8, #94B9FF) !important; font-family: 'Roboto', sans-serif;"><i class="fa-solid fa-cart-plus"></i></a>
             </div>
         </div>
     }
@@ -100,5 +100,21 @@
     </ul>
 </nav>
 
+@section Scripts{ 
+<script>
+
+    $("[data-add]").click(function (e) {
+        e.preventDefault();
+        const productId = $(this).data("add");
+
+        $.post("@Url.Action("AddItem", "Basket")", { productId }, function (data) {
+            $("#navbarBasketCount").text(data.totalItems);
+            successMessage("Item successfully added to your basket.");
+        })
+    })
+</script>
+
+
+} 
 
 

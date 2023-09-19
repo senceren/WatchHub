@@ -27,7 +27,7 @@ namespace ApplicationCore.Services
             var basket = await GetOrCreateBasketAsync(buyerId);
             var basketItem = basket.Items.FirstOrDefault(x => x.ProductId == productId);
 
-            if(basketItem != null)
+            if (basketItem != null)
             {
                 basketItem.Quantity += quantity;
             }
@@ -44,6 +44,7 @@ namespace ApplicationCore.Services
                     Quantity = quantity,
                     Product = product
                 };
+                basket.Items.Add(basketItem);
             }
 
             await _basketRepo.UpdateAsync(basket);
@@ -86,8 +87,8 @@ namespace ApplicationCore.Services
         public async Task<Basket> SetQuantitiesAsync(string buyerId, Dictionary<int, int> quantities)
         {
             var basket = await GetOrCreateBasketAsync(buyerId);
-             
-            foreach(var item in basket.Items)
+
+            foreach (var item in basket.Items)
             {
                 if (quantities.ContainsKey(item.ProductId))
                 {
@@ -108,11 +109,11 @@ namespace ApplicationCore.Services
             var destinationBasket = await GetOrCreateBasketAsync(destinationBuyerId);
 
             // tek tek öğeleri eskiden yeniye aktar
-            foreach(var item in sourceBasket.Items)
+            foreach (var item in sourceBasket.Items)
             {
                 var targetItem = destinationBasket.Items.FirstOrDefault(x => x.ProductId == item.ProductId);
 
-                if(targetItem == null)
+                if (targetItem == null)
                 {
                     destinationBasket.Items.Add(new BasketItem()
                     {
