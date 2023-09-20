@@ -25,13 +25,9 @@ builder.Services.AddControllersWithViews();
 
 // IRepository gördüðün yerde EFRepository enjekte et.Generic olduðu için bu þekilde enjekte ettik.
 builder.Services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
-
 builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
-
 builder.Services.AddScoped<IBasketService, BasketService>();
-
 builder.Services.AddScoped<IBasketViewModelService, BasketViewModelService>();
-
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
@@ -57,6 +53,8 @@ app.UseRequestLocalization("en-US");
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseBasketTransfer(); // middleware oluþturarak extension metot ile çaðýrdýk.
 
 app.MapControllerRoute(
     name: "default",

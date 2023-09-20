@@ -20,3 +20,7 @@ function successMessage(msg) {
         title: msg
     });
 }
+
+if (successMessageTemp) {
+    successMessage(successMessageTemp);
+}

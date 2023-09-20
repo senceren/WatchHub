@@ -27,7 +27,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 .card {
-    box-shadow: gray 8px 8px 20px;
+    box-shadow: gray 1px 3px 10px;
 }
 .card-title{
     text-overflow:ellipsis;
@@ -46,6 +46,10 @@ body {
 }
 .card-img-top:hover{
   transform:scale(.95)
+}
+
+.number-input > .quantity {
+    width: 70px;
 }
 
 
