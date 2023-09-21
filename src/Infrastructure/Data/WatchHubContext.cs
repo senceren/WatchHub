@@ -12,9 +12,9 @@ namespace Infrastructure.Data
 {
     public class WatchHubContext : DbContext
     {
-        public WatchHubContext(DbContextOptions<WatchHubContext> options) : base (options)
+        public WatchHubContext(DbContextOptions<WatchHubContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Product> Products => Set<Product>();
@@ -22,6 +22,8 @@ namespace Infrastructure.Data
         public DbSet<Brand> Brands => Set<Brand>();
         public DbSet<Basket> Baskets => Set<Basket>();
         public DbSet<BasketItem> BasketItems => Set<BasketItem>();
+        public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderItem> OrderItems => Set<OrderItem>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

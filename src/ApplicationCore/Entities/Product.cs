@@ -14,7 +14,6 @@ namespace ApplicationCore.Entities
         public string? PictureUri { get; set; }
         public int BrandId { get; set; }
         public int CategoryId { get; set; }
-
         public Brand Brand { get; set; } = null!;
         public Category Category { get; set; } = null!;
 
