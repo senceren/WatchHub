@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.Http;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<WatchHubContext>(ob => ob.UseNpgsql(builder.Configuration.GetConnectionString("WatchHubContext")));
-builder.Services.AddDbContext<AppIdentityContext>(ob => ob.UseNpgsql(builder.Configuration.GetConnectionString("AppIdentityContext")));
+builder.Services.AddDbContext<WatchHubContext>(ob => ob.UseSqlServer(builder.Configuration.GetConnectionString("WatchHubContext")));
+builder.Services.AddDbContext<AppIdentityContext>(ob => ob.UseSqlServer(builder.Configuration.GetConnectionString("AppIdentityContext")));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

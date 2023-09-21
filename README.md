@@ -13,7 +13,7 @@ Install-Package Ardalis.Specification
 ### Infrastructure
 ```
 Install-package Microsoft.EntityFrameworkCore
-Install-package Npgsql.EntityFrameworkCore.PostgreSQL
+Install-package Microsoft.EntityFrameworkCore.SqlServer
 Install-package Microsoft.EntityFrameworkCore.Tools
 Install-package Microsoft.EntityFrameworkCore.Design
 Install-package Microsoft.AspNetCore.Identity.EntityFrameworkCore
