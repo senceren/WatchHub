@@ -1,4 +1,6 @@
-﻿namespace Web.Interfaces
+﻿using ApplicationCore.Entities;
+
+namespace Web.Interfaces
 {
     public interface IBasketViewModelService
     {
@@ -12,5 +14,7 @@
 
         Task<BasketViewModel> UpdateQuantitiesAsync(Dictionary<int, int> quantities);
         Task TransferBasketAsync();
+
+        Task CheckoutAsync(string street, string city, string? state, string country, string zip);
     }
 }

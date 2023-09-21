@@ -29,6 +29,7 @@ builder.Services.AddScoped<IHomeViewModelService, HomeViewModelService>();
 builder.Services.AddScoped<IBasketService, BasketService>();
 builder.Services.AddScoped<IBasketViewModelService, BasketViewModelService>();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 

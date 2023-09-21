@@ -14,9 +14,9 @@ namespace Infrastructure.Data
     {
         public WatchHubContext(DbContextOptions<WatchHubContext> options) : base(options)
         {
-
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
-
+        
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Category> Categories => Set<Category>();
         public DbSet<Brand> Brands => Set<Brand>();
