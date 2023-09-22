@@ -13,6 +13,8 @@ namespace Infrastructure.Identity
     {
         public static async Task SeedAsync(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
+            await db.Database.MigrateAsync(); // otomatik migrasyon
+
             if (await userManager.Users.AnyAsync() || await roleManager.Roles.AnyAsync())
                 return;
 
