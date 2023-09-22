@@ -65,7 +65,7 @@ app.MapRazorPages();
 using (var scope = app.Services.CreateScope())
 {
     var watchHubContext = scope.ServiceProvider.GetRequiredService<WatchHubContext>();
-      await WatchHubContextSeed.SeedAsync(watchHubContext);
+    await WatchHubContextSeed.SeedAsync(watchHubContext);
 
     var appIdentityContext = scope.ServiceProvider.GetRequiredService<AppIdentityContext>();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
