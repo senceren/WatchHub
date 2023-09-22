@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Constants;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +12,7 @@ namespace Infrastructure.Identity
 {
     public static class AppIdentityContextSeed
     {
-        public static async Task SeedAsync(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        public static async Task SeedAsync(AppIdentityContext db, RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             await db.Database.MigrateAsync(); // otomatik migrasyon
 
